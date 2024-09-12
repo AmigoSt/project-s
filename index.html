@@ -323,7 +323,7 @@
    box.material = M_back_v1;
    
 
-    BABYLON.SceneLoader.ImportMeshAsync("", "https://raw.githubusercontent.com/AmigoSt/project-s/main/assets/models", "sphere_v2.glb", scene).then((result) => {
+   BABYLON.SceneLoader.ImportMeshAsync("", "https://raw.githubusercontent.com/AmigoSt/project-s/main/assets/models/", "sphere_v2.glb", scene).then((result) => {
         const mesh_back = scene.getMeshByName("back");
         const mesh_main_grid = scene.getMeshByName("main_grid");
         mesh_back.material = M_gride_v1;
