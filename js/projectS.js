@@ -21,24 +21,39 @@ let grid_animations_v1 = await BABYLON.Animation.ParseFromFileAsync(null, "./ani
 
 
 
+
+
 var createScene = function () {
     // This creates a basic Babylon Scene object (non-mesh)
     var scene = new BABYLON.Scene(engine);
 
     // This creates and positions an arc rotate camera (non-mesh)
     //var camera = new BABYLON.ArcRotateCamera("Camera", BABYLON.Tools.ToRadians(-90), BABYLON.Tools.ToRadians(90), 10, new BABYLON.Vector3(0, 0, 0), scene);
-    var camera = new BABYLON.ArcRotateCamera("Camera", BABYLON.Tools.ToRadians(0), BABYLON.Tools.ToRadians(90), 0, new BABYLON.Vector3(0, 0, 0), scene);        
+    var camera = new BABYLON.ArcRotateCamera("Camera", BABYLON.Tools.ToRadians(0), BABYLON.Tools.ToRadians(90), 0, new BABYLON.Vector3(0, 0, 0), scene);      
+    //globalThis.debugNode.fov = 0.47;// (debugNode as BABYLON.ArcRotateCamera)
+    camera.fov = 0.63;
     camera.attachControl(canvas, false);
-
-    //camera 2
-    var camera_main = new BABYLON.ArcRotateCamera("Camera_Main", BABYLON.Tools.ToRadians(0), BABYLON.Tools.ToRadians(0), 5, new BABYLON.Vector3(0, 0, 0), scene);    
-    camera_main.attachControl(canvas, false);
 
     // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
     // Default intensity is 1. Let's dim the light a small amount
-    light.intensity = 0.7;
+    light.intensity = 1;
+
+    // Load a GUI from a URL JSON.
+    let advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("GUI", true, scene);
+    let loadedGUI = advancedTexture.parseFromURLAsync("./gui/gui_dev_v1.json");
+    let btn_devPanel = advancedTexture.getControlByName("btn_devPanels");
+    
+    if (btn_devPanel != null) {
+        btn_devPanel.onPointerClickObservable.add( () => {  
+            scene.debugLayer.show();
+        });
+    }
+    
+   
+
+    
 
 
     //Place Material Here!!!!
@@ -49,23 +64,23 @@ var createScene = function () {
     f_M_grid_back_v1();
 
     
+
+
+    
     //// adding object
-    //var box = BABYLON.MeshBuilder.CreateBox("box", {width: 30, height: 20, depth: 0.1 }, scene);
     var background_box = BABYLON.MeshBuilder.CreateBox("background", {width: 8, height: 4, depth: 0.1 }, scene);
-    //box.position.z = 20;
     background_box.position.x = -5;
     background_box.rotation.y = BABYLON.Tools.ToRadians(90);
     background_box.material = M_back_v1;
 
     BABYLON.SceneLoader.ImportMeshAsync("", "https://raw.githubusercontent.com/AmigoSt/project-s/main/assets/models/", "grid.glb", scene).then((result) => {
-        const mesh_grid = scene.getMeshByName("grid");
-        const mesh_grid_back = scene.getMeshByName("grid_back");
-        const mesh_targets = scene.getMeshByName("grid_targets");
-        
 
-        //mesh_grid.material = M_gride_v1;
-        //mesh_grid_back.material = M_grid_back_v1;
-        //mesh_targets.material = M_grid_targets_v1;
+        const mesh_grid = scene.getMeshByName("grid");
+        mesh_grid.material = M_grid_v1;
+        const mesh_grid_back = scene.getMeshByName("grid_back");
+        mesh_grid_back.material = M_grid_back_v1;
+        const mesh_targets = scene.getMeshByName("grid_targets");
+        mesh_targets.material = M_grid_targets_v1;
        
         
 
@@ -80,27 +95,30 @@ var createScene = function () {
     
     });
 
-    scene.debugLayer.show();
+
+    
 
     return scene;
 };
 
-        window.initFunction = async function() {
-            var asyncEngineCreation = async function() {
-                try {
-                return createDefaultEngine();
-                } catch(e) {
-                console.log("the available createEngine function failed. Creating the default engine instead");
-                return createDefaultEngine();
-                }
-            }
+window.initFunction = async function() {
+    var asyncEngineCreation = async function() {
+        try {
+            return createDefaultEngine();
+        } catch(e) {
+            console.log("the available createEngine function failed. Creating the default engine instead");
+            return createDefaultEngine();
+        }
+    }
 
-            engine = await asyncEngineCreation();
+    engine = await asyncEngineCreation();
     window.engine = engine; 
-if (!engine) throw 'engine should not be null.';
-startRenderLoop(engine, canvas);
-scene = createScene();
-    window.scene = scene;};
+    if (!engine) throw 'engine should not be null.';
+    startRenderLoop(engine, canvas);
+    scene = createScene();
+    window.scene = scene;
+};
+
 initFunction().then(() => {sceneToRender = scene                    
 });
 
