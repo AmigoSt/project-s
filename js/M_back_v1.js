@@ -59,7 +59,8 @@ export function f_M_back_v1() {
     Texture.convertToGammaSpace = false;
     Texture.convertToLinearSpace = false;
     Texture.disableLevelMultiplication = false;
-    Texture.texture = new BABYLON.Texture("https://raw.githubusercontent.com/AmigoSt/project-s/main/assets/textures/T_background_v1.jpg", null, false, false, 3);
+    //Texture.texture = new BABYLON.Texture("https://raw.githubusercontent.com/AmigoSt/project-s/main/assets/textures/T_background_v1.jpg", null, false, false, 3);
+    Texture.texture = new BABYLON.Texture("https://raw.githubusercontent.com/AmigoSt/project-s/main/assets/textures/t_back_v1.jpg", null, false, false, 3);
     Texture.texture.wrapU = 1;
     Texture.texture.wrapV = 1;
     Texture.texture.uAng = 0;
@@ -76,7 +77,8 @@ export function f_M_back_v1() {
     ImageSource.visibleInInspector = false;
     ImageSource.visibleOnFrame = false;
     ImageSource.target = 3;
-    ImageSource.texture = new BABYLON.Texture("https://raw.githubusercontent.com/AmigoSt/project-s/main/assets/textures/T_background_v1.jpg", null, false, false, 3);
+    //ImageSource.texture = new BABYLON.Texture("https://raw.githubusercontent.com/AmigoSt/project-s/main/assets/textures/T_background_v1.jpg", null, false, false, 3);
+    ImageSource.texture = new BABYLON.Texture("https://raw.githubusercontent.com/AmigoSt/project-s/main/assets/textures/t_back_v1.jpg", null, false, false, 3);
     ImageSource.texture.wrapU = 1;
     ImageSource.texture.wrapV = 1;
     ImageSource.texture.uAng = 0;

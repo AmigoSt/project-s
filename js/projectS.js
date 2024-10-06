@@ -50,17 +50,21 @@ var createScene = function () {
     box.rotation.y = BABYLON.Tools.ToRadians(180);
     box.material = M_back_v1;
 
-    BABYLON.SceneLoader.ImportMeshAsync("", "https://raw.githubusercontent.com/AmigoSt/project-s/main/assets/models/", "sphere_v2.glb", scene).then((result) => {
-    const mesh_back = scene.getMeshByName("back");
-    const mesh_main_grid = scene.getMeshByName("main_grid");
-    mesh_back.material = M_gride_v1;
-    mesh_main_grid.material = M_gride_v1;
+    BABYLON.SceneLoader.ImportMeshAsync("", "https://raw.githubusercontent.com/AmigoSt/project-s/main/assets/models/", "grid.glb", scene).then((result) => {
+        const mesh_back = scene.getMeshByName("grid_back");
+        const mesh_main_grid = scene.getMeshByName("grid");
+        mesh_back.material = M_gride_v1;
+        mesh_main_grid.material = M_gride_v1;
 
-    // Grid Animation
-    const mesh_grid = scene.getMeshByName("__root__");
-    mesh_grid.position.y =10;
-    mesh_grid.animations = grid_animations_v1;
-    scene.beginAnimation(mesh_grid, 0, 100, true);
+        // Grid Animation
+        const mesh_grid = scene.getMeshByName("__root__");
+        mesh_grid.position.y =10;
+        mesh_grid.animations = grid_animations_v1;
+        scene.beginAnimation(mesh_grid, 0, 100, true);
+
+
+
+    
     });
 
     scene.debugLayer.show();
