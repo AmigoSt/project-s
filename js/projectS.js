@@ -1,5 +1,7 @@
-import {f_M_gride_v1} from './M_gride_v1.js';
+import {f_M_grid_v1} from './M_grid_v1.js';
 import {f_M_back_v1} from './M_back_v1.js';
+import {f_M_grid_targets_v1} from './M_grid_targets_v1.js';
+import {f_M_grid_back_v1} from './M_grid_back_v1.js';
 
 var canvas = document.getElementById("renderCanvas");
 
@@ -24,7 +26,8 @@ var createScene = function () {
     var scene = new BABYLON.Scene(engine);
 
     // This creates and positions an arc rotate camera (non-mesh)
-    var camera = new BABYLON.ArcRotateCamera("Camera", BABYLON.Tools.ToRadians(-90), BABYLON.Tools.ToRadians(90), 10, new BABYLON.Vector3(0, 0, 0), scene);    
+    //var camera = new BABYLON.ArcRotateCamera("Camera", BABYLON.Tools.ToRadians(-90), BABYLON.Tools.ToRadians(90), 10, new BABYLON.Vector3(0, 0, 0), scene);
+    var camera = new BABYLON.ArcRotateCamera("Camera", BABYLON.Tools.ToRadians(0), BABYLON.Tools.ToRadians(90), 0, new BABYLON.Vector3(0, 0, 0), scene);        
     camera.attachControl(canvas, false);
 
     //camera 2
@@ -40,27 +43,37 @@ var createScene = function () {
 
     //Place Material Here!!!!
     
-    f_M_gride_v1();
+    f_M_grid_v1();
     f_M_back_v1();
+    f_M_grid_targets_v1();
+    f_M_grid_back_v1();
 
     
     //// adding object
-    var box = BABYLON.MeshBuilder.CreateBox("box", {width: 30, height: 20, depth: 0.1 }, scene);
-    box.position.z = 20;
-    box.rotation.y = BABYLON.Tools.ToRadians(180);
-    box.material = M_back_v1;
+    //var box = BABYLON.MeshBuilder.CreateBox("box", {width: 30, height: 20, depth: 0.1 }, scene);
+    var background_box = BABYLON.MeshBuilder.CreateBox("background", {width: 8, height: 4, depth: 0.1 }, scene);
+    //box.position.z = 20;
+    background_box.position.x = -5;
+    background_box.rotation.y = BABYLON.Tools.ToRadians(90);
+    background_box.material = M_back_v1;
 
     BABYLON.SceneLoader.ImportMeshAsync("", "https://raw.githubusercontent.com/AmigoSt/project-s/main/assets/models/", "grid.glb", scene).then((result) => {
-        const mesh_back = scene.getMeshByName("grid_back");
-        const mesh_main_grid = scene.getMeshByName("grid");
-        mesh_back.material = M_gride_v1;
-        mesh_main_grid.material = M_gride_v1;
+        const mesh_grid = scene.getMeshByName("grid");
+        const mesh_grid_back = scene.getMeshByName("grid_back");
+        const mesh_targets = scene.getMeshByName("grid_targets");
+        
+
+        //mesh_grid.material = M_gride_v1;
+        //mesh_grid_back.material = M_grid_back_v1;
+        //mesh_targets.material = M_grid_targets_v1;
+       
+        
 
         // Grid Animation
-        const mesh_grid = scene.getMeshByName("__root__");
-        mesh_grid.position.y =10;
-        mesh_grid.animations = grid_animations_v1;
-        scene.beginAnimation(mesh_grid, 0, 100, true);
+        const mesh_grid_root = scene.getMeshByName("__root__");
+        //mesh_grid.position.y =10;
+        mesh_grid_root.animations = grid_animations_v1;
+        scene.beginAnimation(mesh_grid_root, 0, 100, true);
 
 
 
