@@ -51,9 +51,6 @@ var createScene = function () {
         });
     }
     
-   
-
-    
 
 
     //Place Material Here!!!!
