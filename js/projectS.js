@@ -47,11 +47,11 @@ var createScene = function () {
     
     scene.debugLayer.show();
 
-    // if (btn_devPanel != null) {
-    //     btn_devPanel.onPointerClickObservable.add( () => {  
-    //         scene.debugLayer.show();
-    //     });
-    // }
+    if (btn_devPanel != null) {
+        btn_devPanel.onPointerClickObservable.add( () => {  
+            scene.debugLayer.show();
+        });
+    }
     
    
 
@@ -75,28 +75,35 @@ var createScene = function () {
     background_box.rotation.y = BABYLON.Tools.ToRadians(90);
     background_box.material = M_back_v1;
 
+<<<<<<< HEAD
+    // BABYLON.SceneLoader.ImportMeshAsync("", "https://raw.githubusercontent.com/AmigoSt/project-s/main/assets/models/", "grid.glb", scene).then((result) => {
+=======
     BABYLON.SceneLoader.ImportMeshAsync("", "https://raw.githubusercontent.com/AmigoSt/project-s/main/assets/models/", "grid.glb", scene).then((result) => {
+>>>>>>> parent of 45215e3 (model fixing)
 
-        const mesh_grid = scene.getMeshByName("grid");
-        mesh_grid.material = M_grid_v1;
-        const mesh_grid_back = scene.getMeshByName("grid_back");
-        mesh_grid_back.material = M_grid_back_v1;
-        const mesh_targets = scene.getMeshByName("grid_targets");
-        mesh_targets.material = M_grid_targets_v1;
+    //     const mesh_grid = scene.getMeshByName("grid");
+    //     mesh_grid.material = M_grid_v1;
+    //     const mesh_grid_back = scene.getMeshByName("grid_back");
+    //     mesh_grid_back.material = M_grid_back_v1;
+    //     const mesh_targets = scene.getMeshByName("grid_targets");
+    //     mesh_targets.material = M_grid_targets_v1;
        
         
 
-        // Grid Animation
-        const mesh_grid_root = scene.getMeshByName("__root__");
-        //mesh_grid.position.y =10;
-        mesh_grid_root.animations = grid_animations_v1;
-        scene.beginAnimation(mesh_grid_root, 0, 100, true);
+    //     // Grid Animation
+    //     const mesh_grid_root = scene.getMeshByName("__root__");
+    //     //mesh_grid.position.y =10;
+    //     mesh_grid_root.animations = grid_animations_v1;
+    //     scene.beginAnimation(mesh_grid_root, 0, 100, true);
 
 
 
     
-    });
+    // });
 
+    BABYLON.appendSceneAsync("https://raw.githubusercontent.com/AmigoSt/project-s/main/assets/models/grid.gltf", scene).then(() => {
+        
+    });
 
     
 
