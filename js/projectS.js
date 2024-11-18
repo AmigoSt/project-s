@@ -45,13 +45,7 @@ var createScene = function () {
     let loadedGUI = advancedTexture.parseFromURLAsync("./gui/gui_dev_v1.json");
     let btn_devPanel = advancedTexture.getControlByName("btn_devPanels");
     
-    // if (btn_devPanel != null) {
-    //     btn_devPanel.onPointerClickObservable.add( () => {  
-    //         scene.debugLayer.show();
-    //     });
-    // }
-    
-    scene.debugLayer.show();
+
 
     //Place Material Here!!!!
     
@@ -92,7 +86,13 @@ var createScene = function () {
     
     });
 
-
+    if (btn_devPanel != null) {
+        btn_devPanel.onPointerClickObservable.add( () => {  
+            scene.debugLayer.show();
+        });
+    }
+    
+    //scene.debugLayer.show();
     
 
     return scene;
