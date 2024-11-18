@@ -48,9 +48,9 @@ var createScene = function () {
     // scene.debugLayer.show();
 
     // if (btn_devPanel != null) {
-        // btn_devPanel.onPointerClickObservable.add( () => {  
-        //     scene.debugLayer.show();
-        // });
+        btn_devPanel.onPointerClickObservable.add( () => {  
+            scene.debugLayer.show();
+        });
     // }
     
    
