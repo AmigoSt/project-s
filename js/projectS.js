@@ -51,7 +51,7 @@ var createScene = function () {
         });
     }
     
-
+    scene.debugLayer.show();
 
     //Place Material Here!!!!
     
