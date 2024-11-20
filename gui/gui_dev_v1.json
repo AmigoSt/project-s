@@ -117,7 +117,7 @@
                 "isEnabled": true,
                 "disabledColor": "#9a9a9a",
                 "disabledColorItem": "#6a6a6a",
-                "name": "btn_devPanels",
+                "name": "btn_devPanel",
                 "className": "Button",
                 "fontSize": "18px",
                 "children": [

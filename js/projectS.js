@@ -43,7 +43,7 @@ var createScene = function () {
     // Load a GUI from a URL JSON.
     let advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("GUI", true, scene);
     let loadedGUI = advancedTexture.parseFromURLAsync("./gui/gui_dev_v1.json");
-    let btn_devPanel = advancedTexture.getControlByName("btn_devPanels");
+    let btn_devPanel = advancedTexture.getControlByName("btn_devPanel");
     
 
 
