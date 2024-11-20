@@ -86,11 +86,11 @@ var createScene = function () {
     
     });
 
-    if (btn_devPanel != null) {
+    // if (btn_devPanel != null) {
         btn_devPanel.onPointerClickObservable.add(   
             scene.debugLayer.show()
         );
-    }
+    // }
     
     // scene.debugLayer.show();
     
